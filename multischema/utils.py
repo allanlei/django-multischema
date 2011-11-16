@@ -82,8 +82,9 @@ def get_connection_alias(connection):
     
 def default_set_path(alias=None):
     paths = []
-    if alias and alias not in settings.MULTISCHEMA_EXCLUDE_ALIASES:
-        paths.append(alias)
+    if alias:
+        paths.append(settings.MULTISCHEMA_ALIAS_MAP.get(alias, alias))
+        
     if settings.MULTISCHEMA_APPEND_DEFAULT_PATH:
         paths.append(settings.MULTISCHEMA_DEFAULT_SCHEMA)
     return paths

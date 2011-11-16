@@ -12,5 +12,7 @@ MULTISCHEMA_EXCLUDE_ALIASES = tuple(getattr(settings, 'MULTISCHEMA_EXCLUDE_ALIAS
 MULTISCHEMA_NAMESPACE_SUPPORTED_BACKENDS = tuple(getattr(settings, 'MULTISCHEMA_NAMESPACE_SUPPORTED_BACKENDS', (
     'django.db.backends.postgresql_psycopg2',
 )))
-
+MULTISCHEMA_ALIAS_MAP = dict(getattr(settings, 'MULTISCHEMA_ALIAS_MAP', {
+    'default': 'public',
+}))
 MULTISCHEMA_DEFAULT_PATH = MULTISCHEMA_DEFAULT_SCHEMA

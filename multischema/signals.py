@@ -33,7 +33,7 @@ def create_namespace_if_not_exist(sender, connection, **kwargs):
 def switch_to_namespace_on_connect(sender, connection, **kwargs):
     connected_alias = utils.get_connection_alias(connection)
         
-    if connected_alias and connected_alias not in settings.MULTISCHEMA_EXCLUDE_ALIASES:
+    if connected_alias:
         namespaces = set_path_handler(alias=connected_alias)
         if namespaces:
             cursor = connection.cursor()
