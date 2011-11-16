@@ -1,7 +1,7 @@
-from django.db import connection, connections
+from django.db import connection
 
 import settings
-from signals import pre_switch, post_switch, pre_create, post_create, pre_drop, post_drop
+from signals import pre_switch, post_switch, pre_create, post_create, pre_drop, post_drop, pre_rename, post_rename
 
 import logging
 logger = logging.getLogger(__name__)
@@ -37,7 +37,7 @@ def list_namespaces(cursor=None):
     cursor = cursor or connection.cursor()
     cursor.execute('SELECT nspname as name from pg_namespace')
     namespaces = cursor.fetchall()
-    return list(namespaces)
+    return [ns[0] for ns in namespaces]
 
 def check_namespace_existance(namespace, cursor=None):
     cursor = cursor or connection.cursor()
@@ -69,22 +69,3 @@ def rename_namespace(namespace_old, namespace_new, cursor=None):
     except:
         post_rename.send(sender=None, namespace_old=namespace_old, namespace_new=namespace_new, renamed=False)
     return False
-
-
-
-def get_connection_alias(connection):
-    connected_alias = None
-    for alias, conn in connections._connections.items():
-        if conn == connection:
-            connected_alias = alias
-            break
-    return connected_alias
-    
-def default_set_path(alias=None):
-    paths = []
-    if alias:
-        paths.append(settings.MULTISCHEMA_ALIAS_MAP.get(alias, alias))
-        
-    if settings.MULTISCHEMA_APPEND_DEFAULT_PATH:
-        paths.append(settings.MULTISCHEMA_DEFAULT_SCHEMA)
-    return paths

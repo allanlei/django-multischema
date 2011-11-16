@@ -1,7 +1,6 @@
 In this document, I call schemas as namespace since Postgresql "schema"s mean something else in a different type of database.
 
 
-
 Single Connection
     * TODO
 
