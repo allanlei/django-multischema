@@ -7,6 +7,10 @@ Single Connection
 
 
 Multi Connection
+    Creates a new database connection per namespace.  Should use external connection pooling or create a connection expiration function.
+    
+    In the example, all database entries point to the same database server. By default, MULTISCHEMA_ALIAS_MAP maps "default" to "public" and X to X, so abc.com would use namespace abc.com.
+
     1. Add a database entry to DATABASES for every namespace that you need to access.  (Example: abc.com, def.com, xyz.com)
     1.1 Change multischema settings if needed
     
@@ -20,6 +24,3 @@ Multi Connection
         * Model.objects.all() selects from "default" database using "public" namespace  (Normal non-multischema usage)
         * Model.objects.using("abc.com").all() selects from "abc.com" database using "abc.com" namespace
         * Model.objects.using("xyz.com").create(...) create object in "xyz.com" namespace
-
-    In the example, all database entries point to the same database server. By default, MULTISCHEMA_ALIAS_MAP maps "default" to "public" and X to X, so abc.com would use namespace abc.com.
-    
