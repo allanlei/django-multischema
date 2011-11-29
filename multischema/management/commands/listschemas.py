@@ -3,7 +3,7 @@ from django.db import DEFAULT_DB_ALIAS, connections
 
 from optparse import make_option
 
-from multischema import utils
+from multischema import namespace
 
 
 class Command(BaseCommand):
@@ -16,5 +16,5 @@ class Command(BaseCommand):
     
     def handle(self, **options):
         cursor = connections[options.get('database', DEFAULT_DB_ALIAS)].cursor()
-        for ns in utils.list_namespaces(cursor=cursor):
+        for ns in namespace.list(cursor=cursor):
             self.stdout.write(ns + '\n')
