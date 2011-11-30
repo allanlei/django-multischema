@@ -1,4 +1,4 @@
-# Django settings for multi project.
+# Django settings for single project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -18,7 +18,7 @@ DATABASES = {
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     },
-    'abc.com': {
+    'db001': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'multischema',
         'USER': 'multischema',
@@ -26,7 +26,7 @@ DATABASES = {
         'HOST': '',
         'PORT': '',
     },
-    'def.com': {
+    'db002': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'multischema',
         'USER': 'multischema',
@@ -34,7 +34,31 @@ DATABASES = {
         'HOST': '',
         'PORT': '',
     },
-    'xyz.com': {
+    'db003': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'multischema',
+        'USER': 'multischema',
+        'PASSWORD': 'multischema',
+        'HOST': '',
+        'PORT': '',
+    },
+    'db004': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'multischema',
+        'USER': 'multischema',
+        'PASSWORD': 'multischema',
+        'HOST': '',
+        'PORT': '',
+    },
+    'db005': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'multischema',
+        'USER': 'multischema',
+        'PASSWORD': 'multischema',
+        'HOST': '',
+        'PORT': '',
+    },
+    'db006': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'multischema',
         'USER': 'multischema',
@@ -107,7 +131,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '4&jv*2it1qf8-9(rvor#17l@9yxbah0sm9rf)%xp41g9j05p@g'
+SECRET_KEY = 'e$q%&&h)6+_@m0wd23kj)z=a3n3eqy&3!p^^9^cj&%ncck27-q'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -124,7 +148,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'multiconnection.urls'
+ROOT_URLCONF = 'example.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -136,16 +160,9 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'multischema',
     
-    'multiconnection',
+    'example',
+    'multischema',
 )
 
 # A sample logging configuration. The only tangible logging
