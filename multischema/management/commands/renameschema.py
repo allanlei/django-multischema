@@ -3,7 +3,7 @@ from django.db import DEFAULT_DB_ALIAS, connections, transaction
 
 from optparse import make_option
 
-from multischema import utils
+from multischema import namespace
 
 
 class Command(BaseCommand):
@@ -16,5 +16,5 @@ class Command(BaseCommand):
     
     def handle(self, namespace, new_namespace, **options):
         cursor = connections[options.get('database', DEFAULT_DB_ALIAS)].cursor()
-        utils.rename_namespace(namespace, new_namespace, cursor=cursor)
+        namespace.rename(namespace, new_namespace, cursor=cursor)
         transaction.commit_unless_managed()

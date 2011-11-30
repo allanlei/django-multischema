@@ -3,7 +3,7 @@ from django.db import DEFAULT_DB_ALIAS, connections, transaction
 
 from optparse import make_option
 
-from multischema import utils
+from multischema import namespace
 
 
 class Command(BaseCommand):
@@ -12,9 +12,12 @@ class Command(BaseCommand):
         make_option('--database', action='store', dest='database',
             default=DEFAULT_DB_ALIAS, help='Nominates a database to synchronize. '
                 'Defaults to the "default" database.'),
+#        make_option('--confirm-drop', action='store', dest='confirmed',
+#            default=False, help='Nominates a database to synchronize. '
+#                'Defaults to the "default" database.'),
     )
     
     def handle(self, name, **options):
         cursor = connections[options.get('database', DEFAULT_DB_ALIAS)].cursor()
-        utils.drop_namespace(name, cursor=cursor)
+        namespace.drop(name, cursor=cursor)
         transaction.commit_unless_managed()

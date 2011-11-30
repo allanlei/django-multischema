@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 def get_connection_alias(connection):
     connected_alias = None
-    for alias, conn in connections._connections.items():
+    for alias, conn in connections._connections.iteritems():
         if conn == connection:
             connected_alias = alias
             break

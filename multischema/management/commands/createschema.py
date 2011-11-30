@@ -3,7 +3,8 @@ from django.db import DEFAULT_DB_ALIAS, connections, transaction
 
 from optparse import make_option
 
-from multischema import utils
+from multischema import namespace
+from multischema import settings
 
 
 class Command(BaseCommand):
@@ -14,7 +15,11 @@ class Command(BaseCommand):
                 'Defaults to the "default" database.'),
     )
     
-    def handle(self, name, **options):
-        cursor = connections[options.get('database', DEFAULT_DB_ALIAS)].cursor()
-        utils.create_namespace(name, cursor=cursor)
-        transaction.commit_unless_managed()
+    def handle(self, name, cursor=None, **options):
+        if name in settings.MULTISCHEMA_ALIAS_EXCLUDE:
+            raise CommandError('%s is on the exclude list' % name)
+        cursor = cursor or connections[options.get('database', DEFAULT_DB_ALIAS)].cursor()
+        
+        if not namespace.exists(name):
+            namespace.create(name, cursor=cursor)
+            transaction.commit_unless_managed()
