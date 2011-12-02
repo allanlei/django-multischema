@@ -11,7 +11,7 @@ def find_packages_in(where, **kwargs):
 
 setup(
     name = 'django-multischema',
-    version = '0.1.1',
+    version = '0.1.2',
     author = 'Allan Lei',
     author_email = 'allanlei@helveticode.com',
     description = ('Multischema for Django'),
