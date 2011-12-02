@@ -9,7 +9,6 @@ logger = logging.getLogger(__name__)
 alias_lookup = get_callable(settings.MULTISCHEMA_REVERSE_LOOKUP_HANDLER)
 
 
-
 def create_namespace_if_not_exist(sender, connection, **kwargs):
     connected_alias = get_connection_alias(connection)
     

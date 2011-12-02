@@ -3,7 +3,7 @@ from django.conf import settings
 
 MULTISCHEMA_DEFAULT_NAMESPACE = str(getattr(settings, 'MULTISCHEMA_DEFAULT_NAMESPACE', 'public'))
 MUTLISCHEMA_DEFAULT_NAMESPACE_FALLBACK = bool(getattr(settings, 'MUTLISCHEMA_DEFAULT_NAMESPACE_FALLBACK', False))
-MULTISCHEMA_CREATE_IF_NOT_EXIST = bool(getattr(settings, 'MULTISCHEMA_CREATE_IF_NOT_EXIST', False))
+MULTISCHEMA_CREATE_IF_NOT_EXIST = bool(getattr(settings, 'MULTISCHEMA_CREATE_IF_NOT_EXIST', True))
 
 MULTISCHEMA_SUPPORTED_BACKENDS = tuple(getattr(settings, 'MULTISCHEMA_SUPPORTED_BACKENDS', (
     'django.db.backends.postgresql_psycopg2',
